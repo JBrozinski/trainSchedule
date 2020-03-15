@@ -14,6 +14,8 @@ $(document).ready(function() {
 
   var database = firebase.database();
 
+  // on click event for submit button
+
   $("#trainInfoBtn").on("click", function(event) {
     event.preventDefault();
 
@@ -26,23 +28,14 @@ $(document).ready(function() {
     var frequency = $("#frequency")
       .val()
       .trim();
-    var initialTime = moment(
-      $("#firstTrain")
-        .val()
-        .trim(),
-      "hh:mm"
-    )
-      .subtract(1, "years")
-      .format("X");
-
-    var currentTime = moment();
-    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+    var initialTime = $("#firstTrain")
+      .val()
+      .trim();
 
     console.log(trainName);
     console.log(destination);
     console.log(initialTime);
     console.log(frequency);
-    console.log(currentTime);
 
     var newTrain = {
       train: trainName,
@@ -50,6 +43,7 @@ $(document).ready(function() {
       trainArrival: initialTime,
       everyMin: frequency
     };
+    //push inputs to database
 
     database.ref().push(newTrain);
   });
@@ -57,25 +51,36 @@ $(document).ready(function() {
   database.ref().on("child_added", function(childSnapshot) {
     console.log(childSnapshot.val());
 
+    var currentTime = moment();
     var trainName = childSnapshot.val().train;
     var destination = childSnapshot.val().trainDest;
-    var initialTime = childSnapshot.val().trainArrival;
-    var frequency = childSnapshot.val().everyMin;
+    var initialTime = moment(childSnapshot.val().trainArrival, "HH:mm");
+    var frequency = parseInt(childSnapshot.val().everyMin);
+    var minRemain, nextArrival;
 
-    var trainTime = moment(initialTime).format("hh:mm");
+    console.log(
+      trainName,
+      destination,
+      initialTime.format("hh:mm a"),
+      frequency
+    );
 
-    var difference = moment().diff(moment(trainTime), "minutes");
+    var difference = currentTime.diff(initialTime, "minutes");
+    console.log("Diff:", difference);
 
-    var trainRemain = difference % frequency;
-    console.log(trainRemain);
+    if (difference <= 0) {
+      nextArrival = initialTime.format("h:mm a");
+      minRemain = Math.abs(difference);
+    } else {
+      var remainder = difference % frequency;
+      console.log(remainder);
 
-    var minRemain = frequency - trainRemain;
-    console.log(minRemain);
+      minRemain = frequency - remainder;
+      console.log(minRemain);
 
-    var nextArrival = moment()
-      .add(minRemain, "minutes")
-      .format("hh:mm");
-    console.log(nextArrival);
+      nextArrival = currentTime.add(minRemain, "minutes").format("h:mm a");
+      console.log(nextArrival);
+    }
 
     $("#trainTable > tbody").append(
       "<tr><td>" +

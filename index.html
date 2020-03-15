@@ -2,8 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-   
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <title>Train Schedule</title>
     <link rel="stylesheet" href="./assets/css/styles.css" />
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
@@ -13,84 +16,68 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
   </head>
   <body>
     <div class="container">
-    <!-- jumbotron -->
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">Train Schedule</h1>
-        <p class="lead">Check a time, or schedule your own train.</p>
+      <!-- jumbotron -->
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Train Schedule</h1>
+          <p class="lead">Check a time, or schedule your own train.</p>
+        </div>
+      </div>
+
+      <!-- current schedule -->
+      <div id="container">
+        <div class="card">
+          <div class="p-3 mb-2 bg-primary text-white">
+            <h3>Current Trains Times</h3>
+          </div>
+          <div class="card-body"></div>
+
+          <table class="table" id="trainTable">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    
-    <!-- current schedule -->
-    <div id="container">
-      <div class="card">
-        <div class="p-3 mb-2 bg-primary text-white">
-      <h3>Current Trains Times</h3>
-    </div>
-        <div class="card-body"></div>
-
-    <table class="table" id="trainTable">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-</div>
 
     <!-- Add a train; form -->
     <div class="container">
-    
-    <div id="container">
-      <div class="card">
-        <div class="p-3 mb-2 bg-primary text-white">
-      <h3>Add Train</h3>
-    </div>
-        <div class="card-body"></div>
-       
+      <div id="container">
+        <div class="card">
+          <div class="p-3 mb-2 bg-primary text-white">
+            <h3>Add Train</h3>
+          </div>
+          <div class="card-body"></div>
+
           <form>
             <div class="form-group">
               <label for="exampleInputEmail1">Train Name</label>
@@ -109,11 +96,10 @@
               />
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1"
-                >First Train Time (Military Time)</label
-              >
+              <label for="exampleInputEmail1">First Train Time</label>
               <input
                 class="form-control"
+                type="time"
                 id="firstTrain"
                 placeholder="Name Here"
               />
@@ -122,20 +108,40 @@
               <label for="exampleInputEmail1">Frequency (min)</label>
               <input
                 class="form-control"
+                type="number"
                 id="frequency"
                 placeholder="Name Here"
               />
             </div>
 
-            <button type="submit" class="btn btn-primary" id="trainInfoBtn">Submit</button>
+            <button type="submit" class="btn btn-primary" id="trainInfoBtn">
+              Submit
+            </button>
           </form>
         </div>
       </div>
+
+      <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"
+      ></script>
+
+      <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-database.js"></script>
+
+      <!-- link to js -->
+      <script src="./assets/js/app.js"></script>
     </div>
-  </div>
- 
-    <!-- link to js -->
-    <script src="./assets/js/app.js"></script>
-  </div>
   </body>
 </html>
