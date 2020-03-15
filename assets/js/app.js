@@ -88,9 +88,9 @@ $(document).ready(function() {
         "</td><td>" +
         destination +
         "</td><td>" +
-        frequency +
-        "</td><td>" +
         nextArrival +
+        "</td><td>" +
+        frequency +
         "</td><td>" +
         minRemain +
         "</td></tr>"
