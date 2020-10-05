@@ -5,3 +5,4 @@ To set up your own train schedule, fill in the form on the lower half of the pag
 
 ### [Click here](https://jbrozinski.github.io/trainSchedule/) to see the live app.
 
+![trainAppScreenshot](https://user-images.githubusercontent.com/60246168/95135112-32a63280-0721-11eb-97f7-11ab60d1ac8e.PNG)
